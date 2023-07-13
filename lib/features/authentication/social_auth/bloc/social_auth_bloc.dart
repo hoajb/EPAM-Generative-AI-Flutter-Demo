@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:banking_demo/features/authentication/social_auth/bloc/social_auth_event.dart';
 import 'package:banking_demo/features/authentication/social_auth/bloc/social_auth_state.dart';
 import 'package:banking_demo/features/authentication/social_auth/repository/social_auth_repository.dart';
@@ -23,6 +25,7 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
           yield SocialAuthFailure(message: 'SignInWithGoogle failed');
         }
       } catch (e) {
+        log('[SignInWithGoogle] Error: $e');
         yield SocialAuthFailure(message: e.toString());
       }
     } else if (event is SignInWithFacebook) {
@@ -35,6 +38,7 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
           yield SocialAuthFailure(message: 'SignInWithFacebook failed');
         }
       } catch (e) {
+        log('[SignInWithFacebook] Error: $e');
         yield SocialAuthFailure(message: e.toString());
       }
     } else if (event is SignInWithTwitter) {
@@ -47,6 +51,7 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
           yield SocialAuthFailure(message: 'SignInWithTwitter failed');
         }
       } catch (e) {
+        log('[SignInWithTwitter] Error: $e');
         yield SocialAuthFailure(message: e.toString());
       }
     }
