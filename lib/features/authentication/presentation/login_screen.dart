@@ -66,72 +66,67 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Navigate to the next screen or show a message on successful login
                   Navigator.pushNamed(context, '/home');
                 }
-
-                return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 200,
-                        child: Image.asset('assets/images/logo.png'), // Replace with your logo image
-                      ),
-                      SizedBox(height: 24.0),
-                      TextField(
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                          labelText: 'Username',
-                          border: OutlineInputBorder(),
+                return BlocBuilder<SocialAuthBloc, SocialAuthState>(builder: (context, socialAuthState) {
+                  if (socialAuthState is SocialAuthLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (socialAuthState is SocialAuthSuccess) {
+                    // Navigate to the next screen or show a message on successful login
+                    Navigator.pushNamed(context, '/home');
+                  }
+                  return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Container(
+                          width: 200,
+                          height: 200,
+                          child: Image.asset('assets/images/logo.png'), // Replace with your logo image
                         ),
-                      ),
-                      SizedBox(height: 16.0),
-                      TextField(
-                        controller: _passwordController,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(),
+                        SizedBox(height: 24.0),
+                        TextField(
+                          controller: _usernameController,
+                          decoration: InputDecoration(
+                            labelText: 'Username',
+                            border: OutlineInputBorder(),
+                          ),
                         ),
-                        obscureText: true,
-                      ),
-                      SizedBox(height: 16.0),
-                      // BlocBuilder<SocialAuthBloc, SocialAuthState>(
-                      //   builder: (context, socialAuthState) {
-                      //     return ElevatedButton(
-                      //       onPressed:
-                      //       socialAuthState is! SocialAuthLoading
-                      //           ? () {
-                      //         BlocProvider.of<AuthenticationBloc>(
-                      //             context)
-                      //             .add(
-                      //           LoginRequested(
-                      //             email: _usernameController.text,
-                      //             password: _passwordController.text,
-                      //           ),
-                      //         );
-                      //       }
-                      //           : null,
-                      //       child: Text('Login'),
-                      //     );
-                      //   },
-                      // ),
-                      ElevatedButton(
-                        onPressed: () {
-                          BlocProvider.of<AuthenticationBloc>(context).add(
-                            LoginRequested(
-                              email: _usernameController.text,
-                              password: _passwordController.text,
-                            ),
-                          );
-                        },
-                        child: Text('Login'),
-                      ),
-                      SizedBox(height: 16.0),
-                      SocialAuthButton(
-                        onPressedGoogle: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithGoogle()),
-                        onPressedFacebook: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithFacebook()),
-                        onPressedTwitter: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithTwitter()),
-                      ),
-                    ]);
+                        SizedBox(height: 16.0),
+                        TextField(
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            border: OutlineInputBorder(),
+                          ),
+                          obscureText: true,
+                        ),
+                        SizedBox(height: 16.0),
+                        BlocBuilder<SocialAuthBloc, SocialAuthState>(
+                          builder: (context, socialAuthState) {
+                            return ElevatedButton(
+                              onPressed: socialAuthState is! SocialAuthLoading
+                                  ? () {
+                                      BlocProvider.of<AuthenticationBloc>(context).add(
+                                        LoginRequested(
+                                          email: _usernameController.text,
+                                          password: _passwordController.text,
+                                        ),
+                                      );
+                                    }
+                                  : null,
+                              child: Text('Login'),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 16.0),
+                        SocialAuthButton(
+                          onPressedGoogle: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithGoogle()),
+                          onPressedFacebook: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithFacebook()),
+                          onPressedTwitter: () => BlocProvider.of<SocialAuthBloc>(context).add(SignInWithTwitter()),
+                        ),
+                      ]);
+                });
               },
             ),
           ),

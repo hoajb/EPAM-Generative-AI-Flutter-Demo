@@ -44,8 +44,8 @@ class SocialAuthRepository {
 
   Future<UserCredential?> signInWithTwitter() async {
     final twitterLogin = TwitterLogin(
-      apiKey: 'your_twitter_consumer_key',
-      apiSecretKey: 'your_twitter_consumer_secret',
+      apiKey: 'SHNiNFFrSTdNTEZZdTFKODlfWko6MTpjaQ',
+      apiSecretKey: 'Ce9CGt3CEjWjjznk26bRXEQ6NAmv87smpvzPSihKfKIfQgVkfk',
       redirectURI: 'your_twitter_callback_url',
     );
 
