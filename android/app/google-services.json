@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "727967490936",
+    "project_id": "epam-generative-ai-demo",
+    "storage_bucket": "epam-generative-ai-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727967490936:android:70e6918cbf53423a3b1e8d",
+        "android_client_info": {
+          "package_name": "com.epam.generative.ai.flutter.banking_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727967490936-10skh9dvr8m3883l4dq2i77je00k947c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epam.generative.ai.flutter.banking_demo",
+            "certificate_hash": "f765cf3e38885a72939c22e1dc6ae1b7da736654"
+          }
+        },
+        {
+          "client_id": "727967490936-02kokpntnbf9eal1shme4c94c6s47u03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQPl2kB1G0FEWFM9d76-JlI9y8aYoEkTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727967490936-02kokpntnbf9eal1shme4c94c6s47u03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,6 +4,7 @@ import 'features/authentication/presentation/login_screen.dart';
 import 'features/home/ui/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   runApp(MyApp());
 }
