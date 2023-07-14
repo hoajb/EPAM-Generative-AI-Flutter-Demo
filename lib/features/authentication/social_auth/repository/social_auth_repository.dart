@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:twitter_login/twitter_login.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SocialAuthRepository {
   Future<UserCredential?> signInWithGoogle() async {
@@ -43,9 +44,12 @@ class SocialAuthRepository {
   }
 
   Future<UserCredential?> signInWithTwitter() async {
+    final apiKey = dotenv.env['TWITTER_API_KEY']??"";
+    final secretKey = dotenv.env['TWITTER_SECRET_KEY']??"";
+
     final twitterLogin = TwitterLogin(
-      apiKey: 'SHNiNFFrSTdNTEZZdTFKODlfWko6MTpjaQ',
-      apiSecretKey: 'Ce9CGt3CEjWjjznk26bRXEQ6NAmv87smpvzPSihKfKIfQgVkfk',
+      apiKey: apiKey,
+      apiSecretKey: secretKey,
       redirectURI: 'your_twitter_callback_url',
     );
 

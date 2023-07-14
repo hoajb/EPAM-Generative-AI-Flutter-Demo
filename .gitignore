@@ -13,6 +13,13 @@
 .history
 .svn/
 
+# Ignore Evironment
+*.env
+
+# Ignore Google Services files
+**/google-services.json
+**/GoogleService-Info.plist
+
 # IntelliJ related
 *.iml
 *.ipr
