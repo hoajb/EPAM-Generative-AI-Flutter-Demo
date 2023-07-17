@@ -5,10 +5,12 @@ import 'features/authentication/presentation/login_screen.dart';
 import 'features/home/ui/home_screen.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  await Firebase.initializeApp();
   await dotenv.load(fileName: "assets/.env");
 
   if (kIsWeb || defaultTargetPlatform == TargetPlatform.macOS) {
